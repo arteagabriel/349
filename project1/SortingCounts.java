@@ -8,17 +8,18 @@
 
 import java.util.Random;
 
-public class SortingTimes {
+public class SortingCounts {
     public static void main(String[] args) {
-        final int MAX_SIZE = 80000;
+        final int MAX_SIZE = 12800;
         int[] arr1 = new int[MAX_SIZE];
         int[] arr2 = new int[MAX_SIZE];
         int[] arr3 = new int[MAX_SIZE];
-        long ss;
-        long ms = 0;
-        long qs = 0;
-        long startTime;
-        long endTime;
+        long selectionSum;
+        long mergeSum;
+        long quickSum;
+        long selectionAvg = 0;
+        long mergeAvg = 0;
+        long quickAvg = 0;
         Random rand = new Random();
         // int[] test = new int[20];
 
@@ -33,31 +34,27 @@ public class SortingTimes {
         // }
         // System.out.println();
 
-        System.out.println("Running Times of three sorting algorithms:");
-        for (int n = 5000; n <= MAX_SIZE; n *= 2) {
-            for (int x = 0; x < 5; x++) {
+        System.out.println("Average number of comparisons in three sorting algorithms: ");
+        for (int n = 100; n <= MAX_SIZE; n *= 2) {
+            selectionSum = 0;
+            mergeSum = 0;
+            quickSum = 0;
+            for (int x = 0; x < 100; x++) {
                 for (int i = 0; i < n; i++) {
                     arr1[i] = rand.nextInt(n);
                     arr2[i] = rand.nextInt(n);
                     arr3[i] = rand.nextInt(n);
                 }
 
-                startTime = System.nanoTime();
-                Sorting.selectionSort(arr1, n);
-                endTime = System.nanoTime();
-                ss = (endTime - startTime) / 1000000;
+                Sorting1.selectionSort(arr1, n);
+                selectionSum += Sorting1.count;
 
-                startTime = System.nanoTime();
-                Sorting.mergeSort(arr2, n);
-                endTime = System.nanoTime();
-                ms = (endTime - startTime) / 1000000;
+                Sorting1.mergeSort(arr2, n);
+                mergeSum += Sorting1.count;
 
-                startTime = System.nanoTime();
-                Sorting.quickSort(arr3, n);
-                endTime = System.nanoTime();
-                qs = (endTime - startTime) / 1000000;
+                Sorting1.quickSort(arr3, n);
+                quickSum += Sorting1.count;
 
-                System.out.println("N=" + n + ": T_ss=" + ss + ", T_ms=" + ms + ", T_qs=" + qs);
                 // for (int y = 0; y < 10; y++)
                 //     System.out.print(arr3[y] + " ");
                 // System.out.println();
@@ -67,6 +64,10 @@ public class SortingTimes {
                 // System.out.println();
             }
 
+            selectionAvg = selectionSum / n;
+            mergeAvg = mergeSum / n;
+            quickAvg = quickSum / n; 
+            System.out.println("N=" + n + ": C_ss=" + selectionAvg + ", C_ms=" + mergeAvg + ", C_qs=" + quickAvg);
             System.out.println();
         }
     }

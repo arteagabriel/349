@@ -6,16 +6,21 @@
  * 10/03/2016
  */
 
-public class Sorting {
+public class Sorting1 {
+    public static long count;
+
     public static void selectionSort(int[] arr, int size) {
         int temp;
+        count = 0;
 
         for (int i = 0; i < size - 1; i++) {
             int minIndex = i;
 
-            for (int j = i + 1; j < size; j++)
+            for (int j = i + 1; j < size; j++) {
+                count++;
                 if (arr[j] < arr[minIndex])
                     minIndex = j;
+            }
 
             temp = arr[i];
             arr[i] = arr[minIndex];
@@ -24,6 +29,7 @@ public class Sorting {
     }
 
     public static void mergeSort(int[] arr, int size) {
+        count = 0;
         mergeSort(arr, 0, size - 1);
     }
 
@@ -43,6 +49,7 @@ public class Sorting {
         int ndx = 0;
 
         while (ndx1 < middle + 1 && ndx2 < right + 1) {
+            count++;
             if (arr[ndx1] < arr[ndx2]) {
                 temp[ndx] = arr[ndx1];
                 ndx1++;
@@ -69,6 +76,7 @@ public class Sorting {
     }
 
     public static void quickSort(int[] arr, int size) {
+        count = 0;
         quickSort(arr, 0, size - 1);
     }
 
@@ -85,18 +93,21 @@ public class Sorting {
         int center = (left + right) / 2;
         int temp;
 
+        count++;
         if (arr[center] < arr[left]) {
             temp = arr[center];
             arr[center] = arr[left];
             arr[left] = temp;
         }
 
+        count++;
         if (arr[right] < arr[left]) {
             temp = arr[right];
             arr[right] = arr[left];
             arr[left] = temp;
         }
 
+        count++;
         if (arr[center] < arr[right]) {
             temp = arr[center];
             arr[center] = arr[right];
@@ -111,11 +122,21 @@ public class Sorting {
         int temp;
 
         while (indexL < indexR) {
-            while (arr[indexL] < pivot)
+            while (arr[indexL] < pivot) {
                 indexL++;
+                count++;
+            }
+            count++;
 
-            while (indexL < indexR && arr[indexR] > pivot)
-                indexR--;
+            while (arr[indexR] > pivot) {
+                if (indexL < indexR)
+                    indexR--;
+                else
+                    break;
+
+                count++;
+            }
+            count++;
 
             if (indexL < indexR) {
                 temp = arr[indexL];

@@ -1,0 +1,17 @@
+Average number of comparisons in three sorting algorithms: 
+N=100: C_ss=4950, C_ms=542, C_qs=724
+
+N=200: C_ss=9950, C_ms=641, C_qs=842
+
+N=400: C_ss=19950, C_ms=740, C_qs=952
+
+N=800: C_ss=39950, C_ms=840, C_qs=1073
+
+N=1600: C_ss=79950, C_ms=940, C_qs=1199
+
+N=3200: C_ss=159950, C_ms=1040, C_qs=1322
+
+N=6400: C_ss=319950, C_ms=1139, C_qs=1434
+
+N=12800: C_ss=639950, C_ms=1239, C_qs=1561
+
