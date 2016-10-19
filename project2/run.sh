@@ -1,2 +1,2 @@
-javac Matrix.java
-java Matrix
+javac Strassen.java
+java Strassen 
