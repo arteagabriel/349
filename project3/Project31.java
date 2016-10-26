@@ -9,6 +9,8 @@ public class Project31 {
         int[] l1 = new int[n];
         int[] l2 = new int[n];
         int[] l = new int[n];
+        int temp1;
+        int temp2;
         int temp;
         String output = "";
 
@@ -18,27 +20,31 @@ public class Project31 {
 
         for (int j = 1; j < n; j++) {
             temp = 2;
-            f1[j] = Math.min(f1[j - 1] + a1[j], f2[j - 1] + t2[j - 1] + a1[j]); 
-            if (f1[j - 1] + a1[j] < f2[j - 1] + t2[j - 1] + a1[j]) {
+            temp1 = f1[j - 1] + a1[j];
+            temp2 = f2[j - 1] + t2[j - 1] + a1[j];
+            f1[j] = Math.min(temp1, temp2);
+            if (temp1 < temp2) {
                 temp = 1;
             } 
 
             l1[j] = temp;
 
             temp = 2;
-            f2[j] = Math.min(f2[j - 1] + a2[j], f1[j - 1] + t1[j - 1] + a2[j]);
-            if (f2[j - 1] + a2[j] > f1[j - 1] + t1[j - 1] + a2[j])
+            temp1 = f2[j - 1] + a2[j];
+            temp2 = f1[j - 1] + t1[j - 1] + a2[j];
+            f2[j] = Math.min(temp1, temp2);
+            if (temp1 > temp2)
                 temp = 1;
 
             l2[j] = temp;
         }
 
-        int prev;
-        l[n - 1] = prev = l1[n - 1];
-        for (int i = n - 2; i > 0; i--) {
-            prev = l[i] = prev == 1 ? l1[i] : l2[i];
-        }
 
+        temp1 = f1[n - 1] + x1;
+        temp2 = f2[n - 1] + x2;
+        l[n - 1] = temp1 < temp2 ? 1 : 2;
+        for (int i = n - 1; i > 0; i--)
+            l[i - 1] = l[i] == 1 ? l1[i] : l2[i]; 
         System.out.println("Fastest time is: " + Math.min(f1[n - 1] + x1, f2[n - 1] + x2));
 
         System.out.println("The optimal route is:");
