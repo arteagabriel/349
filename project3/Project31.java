@@ -12,7 +12,6 @@ public class Project31 {
         int temp1;
         int temp2;
         int temp;
-        String output = "";
 
         f1[0] = e1 + a1[0];
         f2[0] = e2 + a2[0];
@@ -45,7 +44,7 @@ public class Project31 {
         l[n - 1] = temp1 < temp2 ? 1 : 2;
         for (int i = n - 1; i > 0; i--)
             l[i - 1] = l[i] == 1 ? l1[i] : l2[i]; 
-        System.out.println("Fastest time is: " + Math.min(f1[n - 1] + x1, f2[n - 1] + x2));
+        System.out.println("Fastest time is: " + Math.min(temp1, temp2));
 
         System.out.println("The optimal route is:");
         for (int i = 0; i < n; i++)
