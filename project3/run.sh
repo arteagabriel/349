@@ -1,2 +1,2 @@
-javac Project31.java
-java Project31
+javac Project32.java
+java Project32
