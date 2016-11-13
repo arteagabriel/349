@@ -1,0 +1,2 @@
+javac ChangeMaker.java
+java ChangeMaker
