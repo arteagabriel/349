@@ -29,7 +29,10 @@ public class ChangeMaker {
 
             for (int i = 0; i < results.length; i++) {
                 if (results[i] > 0) {
-                    System.out.print(results[i] + "*" + d[i] + "c");
+                    if (i == 0)
+                        System.out.print(results[i] + "*" + d[i] + "c");
+                    else
+                        System.out.print(" + " + results[i] + "*" + d[i] + "c");
 
                     count += results[i];
                 }
@@ -48,8 +51,8 @@ public class ChangeMaker {
 
         c[0] = 0;
         int min = 0;
-        for (int j = 1; j < c.length; j++) {
-            for (int i = 0; i < k; i++) {
+        for (int i = 0; i < k; i++) {
+            for (int j = 1; j < c.length; j++) {
                 if (j >= d[i]) {
                     if (c[j - d[i]] <= min) {
                         min = c[j - d[i]]; 
@@ -59,6 +62,9 @@ public class ChangeMaker {
                 }
             }
         }
+
+        for (int i = 0; i < a.length; i++)
+            System.out.println(i + " " + a[i]);  
 
         while (n > 0) {
             counts[a[n]]++;
