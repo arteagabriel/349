@@ -27,10 +27,13 @@ public class ChangeMaker {
 
             System.out.print("Optimal distribution: ");
 
+            boolean first = true;
             for (int i = 0; i < results.length; i++) {
                 if (results[i] > 0) {
-                    if (i == 0)
+                    if (first) {
                         System.out.print(results[i] + "*" + d[i] + "c");
+                        first = false;
+                    }
                     else
                         System.out.print(" + " + results[i] + "*" + d[i] + "c");
 
@@ -51,20 +54,19 @@ public class ChangeMaker {
 
         c[0] = 0;
         int min = 0;
-        for (int i = 0; i < k; i++) {
-            for (int j = 1; j < c.length; j++) {
+        for (int j = 1; j < c.length; j++) {
+            min = Integer.MAX_VALUE;
+
+            for (int i = 0; i < k; i++) {
                 if (j >= d[i]) {
-                    if (c[j - d[i]] <= min) {
-                        min = c[j - d[i]]; 
+                    if (c[j - d[i]] < min) {
+                        min = c[j - d[i]];
                         c[j] = 1 + min;
                         a[j] = i;
                     }
                 }
             }
         }
-
-        for (int i = 0; i < a.length; i++)
-            System.out.println(i + " " + a[i]);  
 
         while (n > 0) {
             counts[a[n]]++;
