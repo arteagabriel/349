@@ -31,8 +31,8 @@ public class DiGraph {
         if (from <= n && from > 0 && to <= n && to > 0) {
             LinkedList<Integer> vertex = list.get(from);
 
-            if (!vertex.contains(to)) {
-                vertex.remove(to);
+            if (vertex.contains(to)) {
+                vertex.remove(Integer.valueOf(to));
                 System.out.println("Edge (" + from + ", " + to + ") was deleted.");
             }
          }
@@ -48,13 +48,14 @@ public class DiGraph {
         return size;
     }
 
-    public int vertexCount() { return list.size(); }
+    // subtract 1 since we don't use 0 index
+    public int vertexCount() { return list.size() - 1; }
 
     public void print() {
         boolean first;
 
         for (int i = 1; i < list.size(); i++) {
-            System.out.print(i + "is connected to: ");
+            System.out.print(i + " is connected to: ");
             first = true;
 
             for (int v : list.get(i)) {
